@@ -43,6 +43,7 @@ no launch.json de configuração debug
   ]
 }
 ```
+  ### ***[Documentação do Sucrase](https://github.com/alangpierce/sucrase)***
 ___
   ## ***ESLint***
   ESLint é uma biblioteca para de padronização de código, nesta biblioteca é possível
@@ -90,6 +91,7 @@ ___
        "global-require": 0,
      }
     ```  
+  ### ***[Documentação do ESLint](https://eslint.org/)***
 ---
   ## ***Prettier***
   O Prettier é uma ferramenta que deiza o código mais bonito, como por exemplo formatando o tamanho da linha do código.
@@ -104,6 +106,7 @@ ___
    "trailingComma" : "es5"
   }
   ```
+  ### ***[Documentação do Prettier](https://prettier.io/)***
   ---
   ## ***Editor Config***
   Esta ferramenta serve para equipes que tenha desenvolvedores que usam editores de códigos diferentes.
@@ -120,3 +123,4 @@ ___
     trim_trailing_whitespace = false
     insert_final_newline = false
     ```
+   ### ***[Documentação do Editor Config](https://editorconfig.org/)***
