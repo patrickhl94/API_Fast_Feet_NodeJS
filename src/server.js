@@ -1,9 +1,7 @@
 import express from 'express';
 
-const app = express() 
+const app = express();
 
-app.get('/', (req, res) => {
-  return res.json({message: 'Está funcionando'})
-}) 
+app.get('/', (req, res) => res.json({ message: 'Está funcionando' }));
 
-app.listen(3300)
+app.listen(3300);
