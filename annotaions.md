@@ -92,8 +92,31 @@ ___
     ```  
 ---
   ## ***Prettier***
-
+  O Prettier é uma ferramenta que deiza o código mais bonito, como por exemplo formatando o tamanho da linha do código.
 
    * **Instalação do Prettier e suas dependencias:** ` yarn add prettier eslint-config-prettier eslint-plugin-prettier -D` ou `npm install prettier eslint-config-prettier eslint-plugin-prettier -D`  
+   * Após instalado, é necessário inserir no `eslintrc.js` na propriedade `'extends'` o valor `'prettier'`, como se trata de um objeto, e nesse atributo ja tem o valor `'airbnb-base'` é necessário colocar os dois valores dentro de um array ficando no seguinte formato: `extends: ['airbnb-base','prettier']`, além disse também é necessário inserir a propriedade `plugins: ['prettier']`
+ 
+ ***O Prettier tem um problema de compatibilidade com o ESLint, que é o caso da aspas duplas e simples, para corrigir este problema é necessário criar um arquivo*** `.prettiercr` ***que é um arquivo JSON, com a seguinte configuração:***
+  ```
+  {
+   "singleQuote" : true,
+   "trailingComma" : "es5"
+  }
+  ```
+  ---
+  ## ***Editor Config***
+  Esta ferramenta serve para equipes que tenha desenvolvedores que usam editores de códigos diferentes.
 
-    
+  * O Editor Config é uma extensão do VSCode que precisa ser instalada.
+  * Após instalada, clicar com o botão direito na área das pastas e arquivos do projeto e selecionar `Generate .editorconfig`, após isso será gerado um arquivo `.editorconfig` que deverá ser configurado da seguinte forma: 
+    ```
+    root = true
+
+    [*]
+    indent_style = space
+    indent_size = 2
+    charset = utf-8
+    trim_trailing_whitespace = false
+    insert_final_newline = false
+    ```
