@@ -5,11 +5,12 @@ class UserAdmin extends Model {
     super.init(
       {
         name: Sequelize.STRING,
-        amail: Sequelize.STRING,
+        email: Sequelize.STRING,
         password_hash: Sequelize.STRING,
       },
       {
         sequelize,
+        modelName: 'usersAdmins',
       }
     );
   }

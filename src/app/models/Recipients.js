@@ -1,7 +1,7 @@
 import Sequelize, { Model } from 'sequelize';
 
 class Recipients extends Model {
-  static init() {
+  static init(sequelize) {
     super.init(
       {
         name: Sequelize.STRING,
@@ -13,7 +13,7 @@ class Recipients extends Model {
         zip_code: Sequelize.INTEGER,
       },
       {
-        Sequelize,
+        sequelize,
       }
     );
   }

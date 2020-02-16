@@ -99,7 +99,7 @@ ___
    * **Instalação do Prettier e suas dependencias:** ` yarn add prettier eslint-config-prettier eslint-plugin-prettier -D` ou `npm install prettier eslint-config-prettier eslint-plugin-prettier -D`  
    * Após instalado, é necessário inserir no `eslintrc.js` na propriedade `'extends'` o valor `'prettier'`, como se trata de um objeto, e nesse atributo ja tem o valor `'airbnb-base'` é necessário colocar os dois valores dentro de um array ficando no seguinte formato: `extends: ['airbnb-base','prettier']`, além disse também é necessário inserir a propriedade `plugins: ['prettier']`
  
- ***O Prettier tem um problema de compatibilidade com o ESLint, que é o caso da aspas duplas e simples, para corrigir este problema é necessário criar um arquivo*** `.prettiercr` ***que é um arquivo JSON, com a seguinte configuração:***
+ ***O Prettier tem um problema de compatibilidade com o ESLint, que é o caso das aspas duplas e simples, para corrigir este problema é necessário criar um arquivo*** `.prettiercr` ***que é um arquivo JSON, com a seguinte configuração:***
   ```
   {
    "singleQuote" : true,
