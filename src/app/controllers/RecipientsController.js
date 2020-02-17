@@ -9,8 +9,11 @@ class RecipientsController {
 
   async update(req, res) {
     const { name } = req.body;
-    // AINDA NÃO FUNCIONA O UPDATED
-    const recipients = await Recipients.update({ where: { name } });
+    const recipients = await Recipients.update(req.body, { where: { name } });
+
+    if (recipients === 0) {
+      return res.status(401).json({ erro: 'Recipients not found' });
+    }
 
     return res.json(recipients);
   }
