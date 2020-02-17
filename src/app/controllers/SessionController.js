@@ -1,8 +1,7 @@
 import jwt from 'jsonwebtoken';
-import bcrypt from 'bcryptjs';
 
+import authConfig from '../../config/auth';
 import UserAdmin from '../models/UserAdmin';
-import Recipients from '../models/Recipients';
 
 class SessionController {
   async store(req, res) {
@@ -10,16 +9,30 @@ class SessionController {
 
     const userAdmin = await UserAdmin.findOne({ where: { email } });
 
-    console.log(userAdmin);
-
     if (!userAdmin) {
       return res.status(401).json({ erro: 'User not found' });
     }
 
-    // const passwordConfered = bcrypt.compare(req.password);
-    // console.log();
+    const passwordConfered = await userAdmin.checkPassword(password);
 
-    return res.json(req.body);
+    if (!passwordConfered) {
+      return res.status(401).json({ error: 'Incorrect password ' });
+    }
+
+    const { id, name } = userAdmin;
+
+    const token = jwt.sign({ id }, authConfig.secret, {
+      expiresIn: authConfig.expiresIn,
+    });
+
+    return res.json({
+      userAdmin: {
+        id,
+        name,
+        email,
+      },
+      token,
+    });
   }
 }
 export default new SessionController();
