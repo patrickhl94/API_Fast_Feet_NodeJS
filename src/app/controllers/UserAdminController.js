@@ -1,8 +1,10 @@
 import UserAdmin from '../models/UserAdmin';
 
 class UserAdminController {
-  show(req, res) {
-    return res.json({});
+  async show(req, res) {
+    const userAdmin = await UserAdmin.findAll();
+
+    return res.json(userAdmin);
   }
 }
 
