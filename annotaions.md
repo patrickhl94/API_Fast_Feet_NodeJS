@@ -14,7 +14,7 @@
     "js" : "node -r sucrase/register"
     } 
   }
-  ```
+  ``` 
   ### Configuração para debugar com o sucrase  
 Para debugar com o sucrase, é necessário algumas configurações:
 
