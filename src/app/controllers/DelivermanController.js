@@ -59,7 +59,7 @@ class DelivermanController {
       return res.status(401).json({ erro: 'Avatar not found with this ID ' });
     }
 
-    // atualiza o avatar se o avatar retornar um array diferente de vazio
+    // atualiza o avatar se o avatar retornar um array diferente de vazio.
     const deliveryman = await Deliverman.update(req.body, {
       where: { id },
     });
