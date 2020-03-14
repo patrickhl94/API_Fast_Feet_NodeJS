@@ -1,16 +1,22 @@
 import { Router } from 'express';
+import multer from 'multer';
 
 import SessionController from './app/controllers/SessionController';
 import RecipientsController from './app/controllers/RecipientsController';
 import UserAdminController from './app/controllers/UserAdminController';
 import DelivermanController from './app/controllers/DelivermanController';
+import AvatarController from './app/controllers/AvatarController';
+
+import multerConfig from './config/multer';
 import authMiddleware from './app/middlewares/auth';
 
 const routes = Router();
+const upload = multer(multerConfig);
 
 routes.post('/sessions', SessionController.store);
 
 routes.use(authMiddleware);
+routes.post('/avatar', upload.single('avatar'), AvatarController.store);
 routes.post('/deliverymans', DelivermanController.store);
 routes.get('/deliverymans', DelivermanController.show);
 routes.get('/deliverymans-all', DelivermanController.index);
