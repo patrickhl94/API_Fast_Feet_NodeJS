@@ -8,7 +8,16 @@ class DelivermanController {
   }
 
   async index(req, res) {
-    const deliveryman = await Deliverman.findAll();
+    const deliveryman = await Deliverman.findAll({
+      attributes: ['id', 'name', 'email', 'avatar_id'],
+      include: [
+        {
+          model: Avatar,
+          as: 'avatar',
+          attributes: ['name', 'path', 'url'],
+        },
+      ],
+    });
 
     if (!deliveryman[0]) {
       return res.status(401).json({ erro: 'Are no registered deliverers' });
@@ -20,7 +29,17 @@ class DelivermanController {
   async show(req, res) {
     const { email } = req.query;
 
-    const deliveryman = await Deliverman.findOne({ where: { email } });
+    const deliveryman = await Deliverman.findOne({
+      where: { email },
+      attributes: ['id', 'name', 'email', 'avatar_id'],
+      include: [
+        {
+          model: Avatar,
+          as: 'avatar',
+          attributes: ['name', 'path', 'url'],
+        },
+      ],
+    });
 
     if (!deliveryman) {
       return res.status(401).json({ erro: 'Are no registered deliveryman' });
