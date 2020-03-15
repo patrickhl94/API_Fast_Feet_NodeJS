@@ -18,17 +18,17 @@ class Deliveries extends Model {
 
   static associate(model) {
     this.belongsTo(model.Deliverman, {
-      foreignKey: 'deliveryman_id	',
+      foreignKey: 'deliveryman_id',
       as: 'deliverman',
     });
 
     this.belongsTo(model.Recipients, {
-      foreignKey: 'recipient_id	',
+      foreignKey: 'recipient_id',
       as: 'recipient',
     });
 
     this.belongsTo(model.Signature, {
-      foreignKey: 'signature_id	',
+      foreignKey: 'signature_id',
       as: 'signature',
     });
   }
