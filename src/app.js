@@ -17,6 +17,10 @@ class App {
       '/avatar',
       express.static(resolve(__dirname, '..', 'temp', 'uploads'))
     );
+    this.server.use(
+      '/signature',
+      express.static(resolve(__dirname, '..', 'temp', 'uploads'))
+    );
   }
 
   routes() {
