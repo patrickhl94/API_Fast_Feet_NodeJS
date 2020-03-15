@@ -7,8 +7,17 @@ import UserAdmin from '../app/models/UserAdmin';
 import Recipients from '../app/models/Recipients';
 import Avatar from '../app/models/Avatar';
 import Deliverman from '../app/models/Deliverman';
+import Signature from '../app/models/Signature';
+import Deliveries from '../app/models/Deliveries';
 
-const models = [UserAdmin, Recipients, Avatar, Deliverman];
+const models = [
+  UserAdmin,
+  Recipients,
+  Avatar,
+  Deliverman,
+  Signature,
+  Deliveries,
+];
 
 class Database {
   constructor() {
