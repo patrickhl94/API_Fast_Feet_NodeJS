@@ -1,4 +1,4 @@
-import Deliverman from '../models/Deliverman';
+import Recipients from '../models/Recipients';
 import Deliveries from '../models/Deliveries';
 
 class ManageDeliveriesController {
@@ -9,6 +9,22 @@ class ManageDeliveriesController {
         canceled_at: null,
         end_date: null,
       },
+      attributes: ['id', 'product'],
+      include: [
+        {
+          model: Recipients,
+          as: 'recipient',
+          attributes: [
+            'name',
+            'street',
+            'number_address',
+            'complement',
+            'city',
+            'state',
+            'zip_code',
+          ],
+        },
+      ],
     });
 
     if (!deliveries)
