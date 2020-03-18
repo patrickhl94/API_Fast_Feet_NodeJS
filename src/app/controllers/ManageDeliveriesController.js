@@ -3,7 +3,7 @@ import Deliveries from '../models/Deliveries';
 
 class ManageDeliveriesController {
   async index(req, res) {
-    const deliveries = Deliveries.findAll({
+    const deliveries = await Deliveries.findAll({
       where: {
         deliveryman_id: req.params.id,
         canceled_at: null,
