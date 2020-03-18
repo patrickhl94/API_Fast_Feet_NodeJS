@@ -25,7 +25,7 @@ routes.post(
   SignatureController.store
 );
 routes.post('/avatar', upload.single('avatar'), AvatarController.store);
-routes.post('/deliveryman/:id/deliveries', ManageDeliveriesController.index);
+routes.get('/deliveryman/:id/deliveries', ManageDeliveriesController.index);
 routes.post('/deliveries', DeliveriesController.store);
 routes.put('/deliveries', DeliveriesController.update);
 routes.get('/deliveries', DeliveriesController.index);
