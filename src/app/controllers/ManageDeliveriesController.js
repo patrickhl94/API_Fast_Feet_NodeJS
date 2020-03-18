@@ -11,6 +11,11 @@ class ManageDeliveriesController {
       },
     });
 
+    if (!deliveries)
+      return res
+        .status(401)
+        .json({ erro: 'Deliveries not found with past data' });
+
     return res.json(deliveries);
   }
 }
