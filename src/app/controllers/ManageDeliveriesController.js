@@ -1,4 +1,5 @@
 import { Op } from 'sequelize';
+import { startOfDay, endOfDay } from 'date-fns';
 import Recipients from '../models/Recipients';
 import Deliveries from '../models/Deliveries';
 
@@ -10,8 +11,7 @@ class ManageDeliveriesController {
       where: {
         deliveryman_id: id,
         canceled_at: null,
-        end_date: null,
-        start_date:
+        end_date:
           delivered === 'S'
             ? {
                 [Op.ne]: null,
@@ -45,9 +45,32 @@ class ManageDeliveriesController {
   }
 
   async update(req, res) {
-    const {} = req.body;
+    const { start_date, end_date, id } = req.body;
+    const date = new Date();
 
-    return res.json({});
+    const countDeliveriesToday = await Deliveries.count({
+      where: {
+        start_date: {
+          [Op.between]: [startOfDay(new Date(date)), endOfDay(new Date(date))],
+        },
+      },
+    });
+
+    console.log(countDeliveriesToday);
+    if (countDeliveriesToday >= 5) {
+      return res.status(401).json({
+        erro:
+          'Deliveryman already accomplished the maximum of five (05) delivered today',
+      });
+    }
+    const deliveries = await Deliveries.update(
+      { start_date, end_date },
+      {
+        where: { id },
+      }
+    );
+
+    return res.json(deliveries);
   }
 }
 
