@@ -5,13 +5,12 @@ import Deliveries from '../models/Deliveries';
 class ManageDeliveriesController {
   async index(req, res) {
     const { id, delivered } = req.query;
-    console.log(delivered);
+
     const deliveries = await Deliveries.findAll({
       where: {
         deliveryman_id: id,
         canceled_at: null,
         end_date: null,
-        // start_date: delivered === 'S' ? !null : null,
         start_date:
           delivered === 'S'
             ? {
