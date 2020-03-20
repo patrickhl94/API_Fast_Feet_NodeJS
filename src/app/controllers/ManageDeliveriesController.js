@@ -2,6 +2,7 @@ import { Op } from 'sequelize';
 import { startOfDay, endOfDay } from 'date-fns';
 import Recipients from '../models/Recipients';
 import Deliveries from '../models/Deliveries';
+import Signature from '../models/Signature';
 
 class ManageDeliveriesController {
   async index(req, res) {
@@ -18,7 +19,7 @@ class ManageDeliveriesController {
               }
             : null,
       },
-      attributes: ['id', 'product', 'start_date', 'end_date'],
+      attributes: ['id', 'product', 'start_date', 'end_date.'],
       include: [
         {
           model: Recipients,
@@ -39,13 +40,13 @@ class ManageDeliveriesController {
     if (!deliveries)
       return res
         .status(401)
-        .json({ erro: 'Deliveries not found with past data' });
+        .json({ erro: 'Deliveries not found with past data.' });
 
     return res.json(deliveries);
   }
 
   async update(req, res) {
-    const { start_date, end_date, id } = req.body;
+    const { start_date, end_date, id, signature_id } = req.body;
     const date = new Date();
 
     const countDeliveriesToday = await Deliveries.count({
@@ -56,21 +57,32 @@ class ManageDeliveriesController {
       },
     });
 
-    console.log(countDeliveriesToday);
-    if (countDeliveriesToday >= 5) {
+    if (countDeliveriesToday >= 5)
       return res.status(401).json({
         erro:
-          'Deliveryman already accomplished the maximum of five (05) delivered today',
+          'Deliveryman already accomplished the maximum of five (05) delivered today.',
       });
+
+    if (end_date && !signature_id)
+      return res.status(401).json({
+        erro: 'To finalize the delivery, insert the ID the signature.',
+      });
+
+    if (signature_id) {
+      const signature = await Signature.findByPk(signature_id);
+
+      if (!signature)
+        return res.status(401).json({ erro: 'ID signature invalid.' });
     }
-    const deliveries = await Deliveries.update(
+
+    await Deliveries.update(
       { start_date, end_date },
       {
         where: { id },
       }
     );
 
-    return res.json(deliveries);
+    return res.json({ msg: 'Updated with success.' });
   }
 }
 
