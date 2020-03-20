@@ -43,6 +43,12 @@ class ManageDeliveriesController {
 
     return res.json(deliveries);
   }
+
+  async update(req, res) {
+    const {} = req.body;
+
+    return res.json({});
+  }
 }
 
 export default new ManageDeliveriesController();
