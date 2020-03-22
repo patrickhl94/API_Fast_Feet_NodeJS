@@ -49,6 +49,7 @@ class ManageDeliveriesController {
     const { start_date, end_date, id, signature_id } = req.body;
     const date = new Date();
 
+    // CONTA QUANTAS ENGREGAS NO DIA JA FORAM RETIRADAS
     const countDeliveriesToday = await Deliveries.count({
       where: {
         start_date: {
@@ -57,17 +58,20 @@ class ManageDeliveriesController {
       },
     });
 
+    // VERIFICA SE JÁ EXISTE 5 ENTREGAS COM DATA DE SAÍDA (start_date) NO DIA
     if (countDeliveriesToday >= 5)
       return res.status(401).json({
         erro:
           'Deliveryman already accomplished the maximum of five (05) delivered today.',
       });
 
+    // VERIFICA SE O ID DA ASSINATURA FOI INSERIDO CASO TENHA UMA DATA DE ENTREGA
     if (end_date && !signature_id)
       return res.status(401).json({
         erro: 'To finalize the delivery, insert the ID the signature.',
       });
 
+    // VERIFICA SE O ID DA ASSINATURA É VÁLIDO.
     if (signature_id) {
       const signature = await Signature.findByPk(signature_id);
 
