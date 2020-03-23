@@ -1,5 +1,11 @@
+import { format, parseISO } from 'date-fns';
+import pt from 'date-fns/locale/pt';
+
 import DeliveryProblems from '../models/DeliveryProblems';
 import Deliveries from '../models/Deliveries';
+import Deliverman from '../models/Deliverman';
+
+import Mail from '../../lib/Mail';
 
 class DeliveryProblemsController {
   async store(req, res) {
@@ -59,7 +65,14 @@ class DeliveryProblemsController {
         {
           model: Deliveries,
           as: 'deliveries',
-          attributes: ['id'],
+          attributes: ['id', 'product'],
+          include: [
+            {
+              model: Deliverman,
+              as: 'deliverman',
+              attributes: ['name', 'email'],
+            },
+          ],
         },
       ],
     });
@@ -79,6 +92,25 @@ class DeliveryProblemsController {
     /**
      * ENVIO DE EMAIL
      */
+    const date_cacel = format(
+      parseISO(canceled_at),
+      "'Dia' dd 'de' MMMM', às' HH:MM'h'",
+      {
+        locale: pt,
+      }
+    );
+
+    await Mail.sendMail({
+      to: `${problem.deliveries.deliverman.name} <${problem.deliveries.deliverman.email}>`,
+      subject: `Entrega FAST FET cancelada.`,
+      template: `canceledDelivery`,
+      context: {
+        name: problem.deliveries.deliverman.name,
+        id: problem.deliveries.id,
+        product: problem.deliveries.product,
+        canceled_date: date_cacel,
+      },
+    });
 
     return res.json({ msg: 'Delivery canceled successfully' });
   }
