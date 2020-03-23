@@ -49,7 +49,6 @@ class DeliveriesController {
       }
     );
 
-    console.log(start_data);
     // Envio de E-MAIL
     await Mail.sendMail({
       to: `${deliverman.name} <${deliverman.email}>`,

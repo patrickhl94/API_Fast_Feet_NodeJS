@@ -76,6 +76,10 @@ class DeliveryProblemsController {
       }
     );
 
+    /**
+     * ENVIO DE EMAIL
+     */
+
     return res.json({ msg: 'Delivery canceled successfully' });
   }
 }
