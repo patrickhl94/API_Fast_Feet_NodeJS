@@ -9,6 +9,7 @@ import Avatar from '../app/models/Avatar';
 import Deliverman from '../app/models/Deliverman';
 import Signature from '../app/models/Signature';
 import Deliveries from '../app/models/Deliveries';
+import DeliveryProblems from '../app/models/DeliveryProblems';
 
 const models = [
   UserAdmin,
@@ -17,6 +18,7 @@ const models = [
   Deliverman,
   Signature,
   Deliveries,
+  DeliveryProblems,
 ];
 
 class Database {
