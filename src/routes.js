@@ -9,6 +9,7 @@ import AvatarController from './app/controllers/AvatarController';
 import SignatureController from './app/controllers/SignatureController';
 import DeliveriesController from './app/controllers/DeliveriesController';
 import ManageDeliveriesController from './app/controllers/ManageDeliveriesController';
+import DeliveryProblemsController from './app/controllers/DeliveryProblemsController';
 
 import multerConfig from './config/multer';
 import authMiddleware from './app/middlewares/auth';
@@ -24,6 +25,10 @@ routes.post(
   upload.single('signature'),
   SignatureController.store
 );
+routes.get('/delivery-problems', DeliveryProblemsController.index);
+routes.put('/delivery-problems/:problem_id', DeliveryProblemsController.update);
+routes.get('/delivery-problems/:delivery_id', DeliveryProblemsController.show);
+routes.post('/delivery-problems', DeliveryProblemsController.store);
 routes.post('/avatar', upload.single('avatar'), AvatarController.store);
 routes.get('/deliveryman/deliveries', ManageDeliveriesController.index);
 routes.put('/deliveryman/', ManageDeliveriesController.update);
