@@ -31,6 +31,7 @@ class ManageDeliveriesController {
             'complement',
             'city',
             'state',
+            'neighborhood',
             'zip_code',
           ],
         },

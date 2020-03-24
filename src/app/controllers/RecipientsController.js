@@ -9,6 +9,7 @@ class RecipientsController {
       number_address: Yup.number().required(),
       city: Yup.string().required(),
       state: Yup.string().required(),
+      neighborhood: Yup.string().required(),
       zip_code: Yup.number().required(),
       complement: Yup.string().required(),
     });
