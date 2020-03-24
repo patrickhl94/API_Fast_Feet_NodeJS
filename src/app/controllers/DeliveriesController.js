@@ -27,6 +27,7 @@ class DeliveriesController {
         'number_address',
         'complement',
         'city',
+        'neighborhood',
         'state',
         'zip_code',
       ],
@@ -60,7 +61,7 @@ class DeliveriesController {
         product: deliveries.product,
         street: recipients.street,
         number_address: recipients.number_address,
-        neighborhood: 'Resistencia', // INSERIR BAIRRO NA TABEL
+        neighborhood: recipients.neighborhood,
         city: recipients.city,
         state: recipients.state,
         zip_code: recipients.zip_code,
