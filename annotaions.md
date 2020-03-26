@@ -60,7 +60,7 @@ ___
     * **5° config:** Com a barra de espaço marcar Broser ou Node.
     * **6° config:** Escolher o stilo. 
     * **7° config:** Formato JavaScript. 
-    * **8° config:** Aceitoar instalar as dependencias do npm do padrão de estilo escolhido. 
+    * **8° config:** Aceitar instalar as dependencias do npm do padrão de estilo escolhido. 
   
     ***Por padão o ESLint instala as dependencias pelo npm, gerando o arquivo `package-lok.json`, 
     e caso esteja usando o `yarn`, basta apagar o arquivo gerado e executar o comando `yarn` no terminal.***
@@ -97,9 +97,9 @@ ___
   O Prettier é uma ferramenta que deiza o código mais bonito, como por exemplo formatando o tamanho da linha do código.
 
    * **Instalação do Prettier e suas dependencias:** ` yarn add prettier eslint-config-prettier eslint-plugin-prettier -D` ou `npm install prettier eslint-config-prettier eslint-plugin-prettier -D`  
-   * Após instalado, é necessário inserir no `eslintrc.js` na propriedade `'extends'` o valor `'prettier'`, como se trata de um objeto, e nesse atributo ja tem o valor `'airbnb-base'` é necessário colocar os dois valores dentro de um array ficando no seguinte formato: `extends: ['airbnb-base','prettier']`, além disse também é necessário inserir a propriedade `plugins: ['prettier']`
+   * Após instalado, é necessário inserir no `eslintrc.js` na propriedade `'extends'` o valor `'prettier'`, como se trata de um objeto, e nesse atributo ja tem o valor `'airbnb-base'` é necessário colocar os dois valores dentro de um array ficando no seguinte formato: `extends: ['airbnb-base','prettier']`, além disso também é necessário inserir a propriedade `plugins: ['prettier']`
  
- ***O Prettier tem um problema de compatibilidade com o ESLint, que é o caso das aspas duplas e simples, para corrigir este problema é necessário criar um arquivo*** `.prettiercr` ***que é um arquivo JSON, com a seguinte configuração:***
+ ***O Prettier tem um problema de compatibilidade com o ESLint, que é o caso das aspas duplas e simples, para corrigir este problema é necessário criar um arquivo*** `.prettierrc` ***que é um arquivo JSON, com a seguinte configuração:***
   ```
   {
    "singleQuote" : true,
